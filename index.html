@@ -1,979 +1,133 @@
 
 <!DOCTYPE html>
-<html lang="pl" style="scroll-behavior: smooth;">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>MTG GROUP | FINANCE</title>
-    <style>
-        :root {
-            --bg-beige: #F6F1E7;
-            --paper: rgba(255, 255, 255, 0.7);
-            --dark: #1B1E23;
-            --text-main: #111111;
-            --text-muted: rgba(17, 17, 17, 0.6);
-            --transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            --border: rgba(0, 0, 0, 0.08);
-            --glow: rgba(255, 255, 255, 0.2);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MTG GROUP — Digital Financial Strategy & Capital Management</title>
+  <meta name="description" content="Professional financial advisory and capital strategy for individuals and corporations. Optimize ROI, risk, and cashflow with MTG GROUP.">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mtggroup.pro/">
+  <meta property="og:title" content="MTG GROUP — Digital Financial Strategy">
+  <meta property="og:description" content="High-end financial consulting and capital strategy for individuals and corporations. Interactive strategic simulation and AI support.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-        }
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="MTG GROUP — Digital Financial Strategy">
+  <meta property="twitter:description" content="Professional financial advisory and capital strategy. Optimize your business with analytical consulting.">
 
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-beige);
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        /* --- UTILS --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        button {
-            cursor: pointer;
-            font-family: inherit;
-            border: none;
-            background: none;
-            transition: var(--transition);
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 4rem;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            background: linear-gradient(to bottom, rgba(246, 241, 231, 0.8), rgba(246, 241, 231, 0.4));
-        }
-
-        .logo-text {
-            font-weight: 800;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-        }
-
-        .menu-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-        }
-
-        /* --- HERO SPLIT --- */
-        #hero {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-        }
-
-        .hero-side {
-            position: relative;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 4rem;
-            transition: flex var(--transition);
-            cursor: pointer;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        /* Panel Light (Left) */
-        .hero-side.left {
-            background: linear-gradient(135deg, var(--paper) 0%, var(--bg-beige) 100%);
-            color: var(--text-main);
-        }
-
-        /* Panel Dark (Right) with Toyota-like dim overlay */
-        .hero-side.right {
-            background-color: var(--dark);
-            background-image: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
-            color: white;
-        }
-
-        .hero-side.right::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 0.9;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        .hero-content p {
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-
-        .cta-btn {
-            padding: 1.2rem 2.4rem;
-            border: 1px solid currentColor;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: transparent;
-            color: inherit;
-        }
-
-        .hero-side.right .cta-btn:hover {
-            background: white;
-            color: var(--dark);
-        }
-        
-        .hero-side.left .cta-btn:hover {
-            background: var(--dark);
-            color: white;
-        }
-
-        .hero-hint {
-            position: absolute;
-            bottom: 2.5rem;
-            font-size: 0.65rem;
-            opacity: 0.4;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            pointer-events: none;
-        }
-
-        /* Hover states for Desktop */
-        @media (min-width: 1024px) {
-            .hero-side.active-hover {
-                flex: 1.6;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#f4f0e7',
+              dark: '#101418',
+              accent: '#4f9cf9',
+              text: '#0b0f12',
             }
-            .hero-side.inactive-hover {
-                flex: 0.4;
-            }
+          },
+          fontFamily: {
+            sans: ['IBM Plex Sans', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+            display: ['Space Grotesk', 'sans-serif'],
+          }
         }
+      }
+    }
+  </script>
+  <style>
+    html {
+      overflow-x: hidden;
+      height: auto;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-color: #f4f0e7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
 
-        /* Mobile Hero & Layout Fixes */
-        @media (max-width: 767px) {
-            header {
-                padding: 0 1.5rem;
-                height: 60px;
-            }
-            #hero {
-                flex-direction: column;
-                height: auto;
-                min-height: 100vh;
-                overflow: visible;
-                padding-top: 60px; /* Header space */
-            }
-            .hero-side {
-                height: 50vh;
-                padding: 1.5rem;
-                touch-action: pan-y;
-                flex: none;
-                width: 100%;
-            }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .container {
-                padding: 0 1.5rem;
-            }
-            .hero-hint {
-                bottom: 1.5rem;
-                font-size: 0.6rem;
-            }
-            .status-label {
-                margin-top: 2rem;
-            }
-        }
+    /* Accessibility: Support Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: initial !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+      }
+      .scroll-badge {
+        display: none !important;
+      }
+    }
 
-        /* --- FLOATING BADGE --- */
-        #floating-badge {
-            position: fixed;
-            width: 140px;
-            height: 140px;
-            z-index: 2000;
-            pointer-events: none;
-            transition: color 0.4s ease, left 0.8s cubic-bezier(0.16, 1, 0.3, 1), top 0.1s linear;
-            transform-origin: center;
-        }
+    .overflow-touch {
+      -webkit-overflow-scrolling: touch;
+    }
 
-        #floating-badge.dark {
-            color: rgba(255, 255, 255, 0.8);
-        }
+    @media (min-width: 768px) {
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f4f0e7;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #101418;
+        border-radius: 10px;
+      }
+    }
 
-        #floating-badge svg {
-            width: 100%;
-            height: 100%;
-        }
+    /* Prevent interaction capture on elements that shouldn't block scroll */
+    .no-scroll-capture {
+      touch-action: pan-y;
+    }
 
-        @media (max-width: 767px) {
-            #floating-badge { display: none !important; }
-        }
+    /* Hardware acceleration hints */
+    .gpu-accel {
+      will-change: transform, opacity;
+      transform: translateZ(0);
+    }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            #floating-badge {
-                width: 100px;
-                height: 100px;
-            }
-        }
-
-        /* --- FORM SECTION --- */
-        .section-form {
-            padding: 80px 0;
-            background: transparent;
-        }
-
-        .form-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .form-header h2 {
-            font-size: clamp(1.6rem, 4vw, 2.5rem);
-            max-width: 600px;
-            line-height: 1.2;
-        }
-
-        .path-chips {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .chip {
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: white;
-        }
-
-        .chip.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-        }
-
-        .status-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-            display: block;
-            color: var(--text-muted);
-            font-weight: 700;
-        }
-
-        .form-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 2px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.03);
-            border: 1px solid var(--border);
-        }
-
-        .grid-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .form-group.full {
-            grid-column: span 2;
-        }
-
-        label {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        input, select, textarea {
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.95rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--dark);
-        }
-
-        .btn-submit {
-            background: var(--dark);
-            color: white;
-            padding: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-top: 1rem;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 767px) {
-            .grid-form { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: span 1; }
-            .form-card { padding: 1.5rem; }
-            .section-form { padding: 40px 0; }
-        }
-
-        /* --- SERVICES & TOOLTIPS --- */
-        .section-services {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-            position: relative;
-            cursor: help;
-        }
-
-        .service-icon::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            background: var(--dark);
-            color: white;
-            padding: 0.6rem 0.9rem;
-            font-size: 0.65rem;
-            font-weight: 500;
-            line-height: 1.4;
-            white-space: pre-wrap;
-            width: 170px;
-            text-align: center;
-            border-radius: 4px;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 100;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .service-icon:hover::after {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .service-item h4 {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        @media (max-width: 767px) {
-            .services-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 2rem 1rem;
-            }
-            .service-icon::after { width: 140px; }
-        }
-
-        /* --- HOW IT WORKS (DARK) --- */
-        .section-process {
-            background: var(--dark);
-            color: white;
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process-parallax-text {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: clamp(10rem, 25vw, 40rem);
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.02);
-            text-transform: uppercase;
-            pointer-events: none;
-            white-space: nowrap;
-            z-index: 1;
-            user-select: none;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .process-step {
-            position: relative;
-        }
-
-        .process-step span {
-            font-size: 0.65rem;
-            opacity: 0.3;
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .process-step h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .process-step p {
-            font-size: 0.8rem;
-            line-height: 1.6;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 1023px) {
-            .process-grid { 
-                grid-template-columns: 1fr; 
-                gap: 3rem;
-            }
-            .process-parallax-text { display: none; }
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding-top: 60px;
-            padding-bottom: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-cta-text {
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .contact-box {
-            background: var(--dark);
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .contact-box h5 {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            opacity: 0.4;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .contact-box a {
-            color: inherit;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        .contact-box.on {
-            box-shadow: inset 0 0 40px rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.02);
-        }
-
-        .footer-bottom {
-            margin-top: 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.6rem;
-            opacity: 0.3;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 700;
-        }
-
-        @media (max-width: 767px) {
-            .contact-grid { grid-template-columns: 1fr; }
-            .contact-box { padding: 2rem 1rem; }
-            .footer-bottom { 
-                flex-direction: column; 
-                gap: 1rem; 
-                text-align: center;
-            }
-        }
-    </style>
+    /* Focus Visible Styles */
+    :focus-visible {
+      outline: 2px solid #4f9cf9;
+      outline-offset: 4px;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body>
-
-    <header>
-        <div class="logo-text">MTG GROUP</div>
-        <button class="menu-btn" aria-label="Menu">
-            <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="20" height="2" fill="black"/>
-                <rect y="10" width="20" height="2" fill="black"/>
-            </svg>
-        </button>
-    </header>
-
-    <div id="floating-badge">
-        <svg viewBox="0 0 200 200">
-            <defs>
-                <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
-            </defs>
-            <circle cx="100" cy="100" r="30" fill="currentColor" opacity="0.1" />
-            <text font-size="12" font-weight="600" letter-spacing="2">
-                <textPath xlink:href="#circlePath" id="rotatingText">
-                    DORADZTWO W FINANSACH DLA JDG I SPÓŁEK • DORADZTWO W FINANSACH DLA JDG I SPÓŁEK •
-                </textPath>
-            </text>
-            <text x="100" y="105" text-anchor="middle" font-size="10" font-weight="900" fill="currentColor">MTG</text>
-        </svg>
-    </div>
-
-    <section id="hero">
-        <div class="hero-side left" onclick="selectPath('JDG')">
-            <div class="hero-content">
-                <p>MTG / GROUP</p>
-                <h1>DORADZTWO<br>FINANSOWE</h1>
-                <button class="cta-btn" onclick="event.stopPropagation(); selectPath('JDG')">Przejdź do strony</button>
-            </div>
-            <div class="hero-hint">SCROLLUJ W DÓŁ…</div>
-        </div>
-        <div class="hero-side right" onclick="selectPath('SPOLKI')">
-            <div class="hero-content">
-                <p>MTG GROUP / FINANCE</p>
-                <h1>SPÓŁKI<br>KAPITAŁOWE</h1>
-                <button class="cta-btn" onclick="event.stopPropagation(); selectPath('SPOLKI')">Przejdź do strony</button>
-            </div>
-            <div class="hero-hint">SYSTEMOWE ROZWIĄZANIA…</div>
-        </div>
-    </section>
-
-    <section id="form-section" class="section-form">
-        <div class="container">
-            <div class="form-header">
-                <div>
-                    <span class="status-label">WYBRANA ŚCIEŻKA: <span id="current-path-label">[ NIE WYBRANO ]</span></span>
-                    <h2>Wypełnij minimum. Resztę dopniemy w rozmowie.</h2>
-                </div>
-                <div class="path-chips">
-                    <button class="chip" id="chip-jdg" onclick="selectPath('JDG')">JDG</button>
-                    <button class="chip" id="chip-spolki" onclick="selectPath('SPOLKI')">Spółki</button>
-                </div>
-            </div>
-
-            <div class="form-card">
-                <form id="mtg-form" onsubmit="handleSubmit(event)">
-                    <div class="grid-form">
-                        <div class="form-group">
-                            <label>Typ podmiotu</label>
-                            <select id="field-type">
-                                <option value="">Wybierz...</option>
-                                <option value="jdg">Jednoosobowa Działalność</option>
-                                <option value="spolka">Spółka z o.o. / S.A.</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Obszar wsparcia</label>
-                            <select id="field-area">
-                                <option value="audit">Diagnoza i Audyt</option>
-                                <option value="optimization">Optymalizacja kosztów</option>
-                                <option value="strategy">Planowanie finansowe</option>
-                                <option value="other">Inne</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>NIP</label>
-                            <input type="text" placeholder="10 cyfr">
-                        </div>
-                        <div class="form-group" id="krs-container">
-                            <label>KRS</label>
-                            <input type="text" id="field-krs" placeholder="KRS (jeśli dotyczy)">
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail / Telefon</label>
-                            <input type="text" placeholder="kontakt do Ciebie">
-                        </div>
-                        <div class="form-group">
-                            <label>Skala (Przychód/Budżet)</label>
-                            <input type="text" id="field-scale" placeholder="np. do 1 mln PLN">
-                        </div>
-                        <div class="form-group full">
-                            <label>Opis wyzwania</label>
-                            <textarea id="field-desc" rows="4" placeholder="Krótko: co jest do zrobienia?"></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-submit full" style="width: 100%;">Wyślij zapytanie</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section id="services-section" class="section-services">
-        <div class="container">
-            <span class="status-label">NASZE USŁUGI</span>
-            <p style="max-width: 600px; margin: 1rem auto; opacity: 0.7; font-size: 0.9rem;">
-                Operacyjnie. Bez lania wody. Skupiamy się na twardych danych i procesach, które realnie zwiększają rentowność.
-            </p>
-            <button class="cta-btn" style="margin-top: 1.5rem; padding: 1rem 2rem;" onclick="scrollToSection('process-section')">Zakres usług</button>
-
-            <div class="services-grid">
-                <div class="service-item">
-                    <div class="service-icon" data-tooltip="DIAGNOZA & AUDYT: Pełna analiza kondycji finansowej i weryfikacja procesów.">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <h4>DIAGNOZA & AUDYT</h4>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon" data-tooltip="PROCES & PORZĄDEK: Systematyzacja operacji biznesowych i obiegów dokumentów.">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-                    </div>
-                    <h4>PROCES & PORZĄDEK</h4>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon" data-tooltip="FINANSE & PLAN: Strategiczne planowanie przepływów pieniężnych i budżetowanie.">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    </div>
-                    <h4>FINANSE & PLAN</h4>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon" data-tooltip="OPTYMALIZACJE: Maksymalizacja zysków poprzez redukcję kosztów i wzrost marży.">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                    </div>
-                    <h4>OPTYMALIZACJE</h4>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon" data-tooltip="WSPARCIE WDROŻEŃ: Praktyczna pomoc w implementacji nowych systemów i narzędzi.">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    </div>
-                    <h4>WSPARCIE WDROŻEŃ</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="process-section" class="section-process">
-        <div class="process-parallax-text" id="parallax-text">PROCESS</div>
-        <div class="container">
-            <span class="status-label" style="color: rgba(255,255,255,0.4);">JAK TO DZIAŁA</span>
-            <h2 style="font-size: clamp(1.8rem, 5vw, 3.5rem); text-transform: uppercase; line-height: 1; margin: 1rem 0;">Proces w 5 krokach.<br>Bez ściemy.</h2>
-            
-            <div class="process-grid">
-                <div class="process-step">
-                    <span>01</span>
-                    <h3>Kontakt</h3>
-                    <p>Wypełniasz formularz lub dzwonisz. Krótka wymiana informacji o Twoich potrzebach.</p>
-                </div>
-                <div class="process-step">
-                    <span>02</span>
-                    <h3>Format</h3>
-                    <p>Ustalamy model współpracy: doradztwo doraźne lub stała opieka finansowa.</p>
-                </div>
-                <div class="process-step">
-                    <span>03</span>
-                    <h3>Termin</h3>
-                    <p>Pierwsze spotkanie strategiczne w ciągu 48h. Konkretna data, konkretne cele.</p>
-                </div>
-                <div class="process-step">
-                    <span>04</span>
-                    <h3>Praca</h3>
-                    <p>Wchodzimy w dane. Budujemy dashboardy, optymalizujemy koszty, prostujemy procesy.</p>
-                </div>
-                <div class="process-step">
-                    <span>05</span>
-                    <h3>Wynik</h3>
-                    <p>Przejrzyste finanse i wyższa marża. Widzisz efekty w Excelu i na koncie firmowym.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-cta-text">Skontaktuj się ze mną,<br>aby dowiedzieć się więcej.</div>
-            
-            <div class="contact-grid">
-                <div class="contact-box" id="cta-phone">
-                    <h5>Telefon</h5>
-                    <a href="tel:+48000000000">+48 000 000 000</a>
-                </div>
-                <div class="contact-box" id="cta-email">
-                    <h5>E-mail</h5>
-                    <a href="mailto:kontakt@mtg.group">kontakt@mtg.group</a>
-                </div>
-                <div class="contact-box" id="cta-whatsapp">
-                    <h5>WhatsApp</h5>
-                    <a href="#">Rozpocznij czat</a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div>&copy; 2025 MTG GROUP FINANCE. ALL RIGHTS RESERVED.</div>
-                <div>DESIGNED FOR PRECISION</div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // --- HELPERS ---
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // --- HERO INTERACTION ---
-        const heroSides = document.querySelectorAll('.hero-side');
-        
-        if (window.innerWidth >= 1024) {
-            heroSides.forEach(side => {
-                side.addEventListener('mouseenter', () => {
-                    heroSides.forEach(s => s.classList.add('inactive-hover'));
-                    side.classList.remove('inactive-hover');
-                    side.classList.add('active-hover');
-                });
-                
-                side.addEventListener('mouseleave', () => {
-                    heroSides.forEach(s => {
-                        s.classList.remove('inactive-hover');
-                        s.classList.remove('active-hover');
-                    });
-                });
-            });
-        }
-
-        // --- PATH SELECTION & FORM AUTO-PRESET ---
-        function selectPath(type) {
-            const label = document.getElementById('current-path-label');
-            const chipJdg = document.getElementById('chip-jdg');
-            const chipSpolki = document.getElementById('chip-spolki');
-            const fieldType = document.getElementById('field-type');
-            const fieldKrs = document.getElementById('field-krs');
-            const fieldScale = document.getElementById('field-scale');
-            const fieldDesc = document.getElementById('field-desc');
-
-            label.textContent = `[ ${type} ]`;
-            
-            if (type === 'JDG') {
-                chipJdg.classList.add('active');
-                chipSpolki.classList.remove('active');
-                fieldType.value = 'jdg';
-                fieldKrs.placeholder = "— nie dotyczy —";
-                fieldKrs.style.opacity = "0.4";
-                fieldScale.placeholder = "np. 10k - 50k miesięcznie";
-                fieldDesc.placeholder = "Jako JDG szukam sposobu na...";
-            } else {
-                chipSpolki.classList.add('active');
-                chipJdg.classList.remove('active');
-                fieldType.value = 'spolka';
-                fieldKrs.placeholder = "Numer KRS (10 cyfr)";
-                fieldKrs.style.opacity = "1";
-                fieldScale.placeholder = "np. 5 mln - 20 mln rocznie";
-                fieldDesc.placeholder = "W naszej spółce potrzebujemy wsparcia w zakresie...";
-            }
-
-            scrollToSection('form-section');
-        }
-
-        function handleSubmit(e) {
-            e.preventDefault();
-            alert("Integracje dopniemy później. Dziękujemy za zainteresowanie!");
-        }
-
-        // --- SCROLL & PARALLAX LOGIC ---
-        const badge = document.getElementById('floating-badge');
-        const parallaxText = document.getElementById('parallax-text');
-        const ctaBoxes = document.querySelectorAll('.contact-box');
-        const footer = document.querySelector('footer');
-        const processSection = document.getElementById('process-section');
-
-        let lastScrollY = 0;
-        let isTicking = false;
-
-        window.addEventListener('scroll', () => {
-            lastScrollY = window.scrollY;
-            if (!isTicking) {
-                window.requestAnimationFrame(() => {
-                    updateScrollEffects(lastScrollY);
-                    isTicking = false;
-                });
-                isTicking = true;
-            }
-        });
-
-        function updateScrollEffects(scrollY) {
-            const width = window.innerWidth;
-            
-            // 1. Parallax for Process Section
-            const processOffset = processSection.offsetTop;
-            const processHeight = processSection.offsetHeight;
-            const viewportHeight = window.innerHeight;
-
-            if (scrollY + viewportHeight > processOffset && scrollY < processOffset + processHeight) {
-                const relativeScroll = scrollY - processOffset;
-                const parallaxY = relativeScroll * 0.3;
-                if (parallaxText) parallaxText.style.transform = `translateX(-50%) translateY(${parallaxY}px)`;
-            }
-
-            // 2. Floating Badge Logic (Tablet/Desktop)
-            if (width < 768) return;
-
-            const rotation = scrollY * 0.2;
-            badge.style.transform = `rotate(${rotation}deg)`;
-
-            let x = 85; 
-            let y = scrollY + 150;
-
-            const heroHeight = document.getElementById('hero').offsetHeight;
-            const formTop = document.getElementById('form-section').offsetTop;
-            const servicesTop = document.getElementById('services-section').offsetTop;
-            const footerTop = footer.offsetTop;
-
-            const isTablet = width >= 768 && width < 1024;
-
-            if (isTablet) {
-                x = 88; 
-                y = scrollY + 150;
-            } else {
-                if (scrollY < heroHeight) {
-                    x = 85;
-                    y = 150 + (scrollY * 0.4);
-                } 
-                else if (scrollY < formTop + 200) {
-                    const p = Math.min(1, (scrollY - heroHeight) / (formTop + 200 - heroHeight));
-                    x = 85 - (70 * p); 
-                    y = scrollY + 100;
-                }
-                else if (scrollY < servicesTop) {
-                    x = 15;
-                    y = scrollY + 150;
-                }
-                else if (scrollY < processSection.offsetTop + 500) {
-                    const p = Math.min(1, (scrollY - servicesTop) / (processSection.offsetTop + 500 - servicesTop));
-                    x = 15 + (70 * p); 
-                    y = scrollY + 150;
-                }
-                else if (scrollY > footerTop - 400) {
-                    const p = Math.min(1, (scrollY - (footerTop - 400)) / 400);
-                    x = 85 - (35 * p); 
-                    y = scrollY + 200;
-                    
-                    if (p > 0.8) {
-                        ctaBoxes.forEach(box => box.classList.add('on'));
-                    } else {
-                        ctaBoxes.forEach(box => box.classList.remove('on'));
-                    }
-                }
-                else {
-                    x = 85;
-                    y = scrollY + 150;
-                }
-            }
-
-            badge.style.left = `${x}%`;
-            badge.style.top = `${y}px`;
-            badge.style.position = 'absolute';
-
-            if (scrollY > processSection.offsetTop - 200 && scrollY < footerTop + 300) {
-                badge.classList.add('dark');
-            } else {
-                badge.classList.remove('dark');
-            }
-        }
-
-        window.addEventListener('resize', () => updateScrollEffects(window.scrollY));
-        updateScrollEffects(window.scrollY);
-
-    </script>
+<body class="antialiased">
+  <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>

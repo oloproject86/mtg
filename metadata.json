@@ -1,5 +1,8 @@
 {
-  "name": "MTG GROUP - Wejście do procesu",
-  "description": "Ultra-minimalistyczna strona wejściowa dla MTG GROUP z interaktywnym wyborem ścieżki (JDG/Spółki), narracyjnym formularzem i dynamicznym, rotującym logotypem podążającym za scrollem.",
-  "requestFramePermissions": []
+  "name": "MTG GROUP — Digital Financial Strategy",
+  "description": "A high-end, responsive financial consulting landing page featuring interactive curtain sliders, scroll-animated UI components, and an integrated AI financial assistant powered by Gemini.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
 }
